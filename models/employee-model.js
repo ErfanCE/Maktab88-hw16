@@ -5,6 +5,11 @@ const { provinceIran } = require('../data/iran-province-data');
 
 const EmployeeSchema = new Schema(
 	{
+		company: {
+			type: Schema.Types.ObjectId,
+			ref: 'Company',
+			required: [true, 'company is required']
+		},
 		firstname: {
 			type: String,
 			required: [true, 'firstname is required'],
@@ -53,13 +58,6 @@ const EmployeeSchema = new Schema(
 				validator: value => provinceIran.includes(value),
 				message: 'provide valid province'
 			}
-		},
-		company: {
-			type: String,
-			required: [true, 'company is required'],
-			minlength: [2, 'company must be equal or more than 3 characters'],
-			maxlength: [40, 'company must be equal or less than 30 characters'],
-			trim: true
 		},
 		role: {
 			type: String,
